@@ -1,0 +1,62 @@
+--Question 2--
+select max(sal), min(sal)
+from Employe;
+
+--Afficher les employer qui ont un salaire superieur a la moyenne
+select *
+from employe
+where sal > (select avg(sal) from employe);
+
+--Les employes qui ont le salaire max
+select *
+from employe 
+where sal=(select max(sal) from employe);
+
+--Q3
+select count(*)
+from employe 
+where fonction="INGENIEUR";
+
+select count(fonction)
+from employe 
+where fonction="INGENIEUR";
+
+--Le nombre de fonction
+select count( distinct fonction)
+from employe;
+
+--Q5
+select count(*)
+from employe natural join magasin
+where ville= "MEKNES";
+
+--Q6
+select sum(qte*pu)
+from vente natural join magasin natural join produit
+where ville= "MEKNES";
+
+---Q7
+select sum(qte*pu)
+from vente natural join magasin natural join produit
+where marque= "DELL";
+
+
+--Q8
+select fonction, avg(sal)
+from employe
+where fonction="INGENIEUR";
+
+--Q10: La moyenne des salaires par fonction
+select fonction, avg(sal) as 'moyenne salaire'
+from employe
+group by fonction;
+
+--Affiche le total des ventes par produit de la marque HP
+select ref, designation,sum(qte*pu) as 'prix'
+from vente natural join produit
+where marque ="HP"
+group by ref
+order by prix desc;
+
+--Afficher les produit avec un total de vente superieur a 40000
+
