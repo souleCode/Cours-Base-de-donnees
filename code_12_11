@@ -58,5 +58,12 @@ where marque ="HP"
 group by ref
 order by prix desc;
 
---Afficher les produit avec un total de vente superieur a 40000
+--Afficher les produit avec un total de vente superieur a 40000 on utilise HAVING
+
+--Q17
+select nummag,nommag,sum(qte*pu)
+from vente natural join magasin natural join produit
+group by nummag
+having sum(qte*pu)>=700000
+order by sum(qte*pu) desc;
 
